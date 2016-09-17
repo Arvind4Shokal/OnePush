@@ -1,4 +1,6 @@
 var websites = [];
+
+//Api call for fetchcing list of prfiles 
 function fetchAPICall(){
 	$.ajax({
 		url:' https://hackerearth.0x10.info/api/one-push?type=json&query=list_websites',
@@ -9,20 +11,7 @@ function fetchAPICall(){
 			for(var i=0;i<data.websites.length;i++){
 				websites.push(data.websites[i]);	
 			}
-			populateList(websites);
-		},
-		error:function(error){
-			console.log(error);
-		}
-	});
-}
-function postAPICall(title,tag,url){
-	$.ajax({
-		url:"https://hackerearth.0x10.info/api/one-push?type=json&query=push&title="+title+"&url="+url+"&tag="+tag,
-		type:'POST',
-		success:function(data,textStatus){
-			console.log(data);
-				console.log(textStatus);
+			populateList(websites); //function for populate the html list
 		},
 		error:function(error){
 			console.log(error);
@@ -30,8 +19,25 @@ function postAPICall(title,tag,url){
 	});
 }
 
+//Api call for posting data
+function postAPICall(title,tag,url){
+	$.ajax({
+		url:"https://hackerearth.0x10.info/api/one-push?type=json&query=push&title="+title+"&url="+url+"&tag="+tag,
+		type:'POST',
+		success:function(data,textStatus){
+		     alert(textStatus+": "+data.message);
+		    console.log(textStatus);	
+		},
+		error:function(error){
+			console.log(error);
+		}
+	});
+}
+
+//Function for search using tag or  title or url 
 function searchFun(){
 	var searchQuery=$("#search-box").val();
+	/*call populate list using matched string*/
 	populateList(websites.filter(function(website){
 		var tag = website.tag;
 		var url = website.url_address;
@@ -45,7 +51,8 @@ function populateList(listData) {
 	
 	//Clear all entries before population
 	$("#all-entries").empty();
-		for(var i=0; i<listData.length; i++){
+
+	for(var i=0; i<listData.length; i++){
 		addListElement(listData[i]);
 	}
 }
@@ -53,6 +60,7 @@ function populateList(listData) {
 function addListElement(data){
 	
    var clone=$("#single-entry").clone().appendTo("#all-entries");
+   //Put data for each list element returned from api call
    clone.find(".icon img").attr("src",data.favicon_image);
    clone.find(".detail h4").text(data.title);
    clone.find(".detail .tag").text(data.tag);
@@ -67,6 +75,8 @@ function addListElement(data){
    	);
 }
 
+
+//function for saving number of likes using local storage 
 function likeButtonOnClick(key, websiteEl){
 	if(typeof(Storage) !== "undefined") {
         if (localStorage[key]) {
@@ -83,10 +93,13 @@ function likeButtonOnClick(key, websiteEl){
 }
 
 $(document).ready(function(){
+	
+	//get data
 	fetchAPICall();
 	$("#search-box").on('input', function(){
 		searchFun($(this).val());	
 	});
+	//fab button click event
 	$("#post-button").on('click',function(){
 		var title=$("input[name='title']").val();
 		var tag=$("input[name='tag']").val();

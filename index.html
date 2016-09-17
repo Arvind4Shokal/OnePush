@@ -3,11 +3,15 @@
 <head>
 	<title>One Push</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<!--bootstrap css-->
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<!-- Material icon css -->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	
 </head>
 <body>
+    <!-- Navabar -->
 	<nav class="navbar navbar-default">
  		 <div class="container">
    			 <div class="navbar-header">
@@ -18,89 +22,62 @@
 			  </div>
    		</div>
    	</nav>
+   	<!-- body container -->
    	<div class="container">
-   	<div class="row" id="single-entry">
-   				<div class="col-sm-6 col-sm-offset-3">
-   					<div class="row well">
-   						<div class="icon col-sm-3">
-   					<img src="">	
-   				</div>
-   				<div class="detail col-sm-7">
-   					<h4 class="title"></h4>
-   					<span class="glyphicon glyphicon-link" aria-hidden="true"></span><a href="" target="_blank"><span class="url-address"></span></a>
-   					<p><span class="glyphicon glyphicon-tag" style="margin-top:5px" aria-hidden="true"></span><span class="tag"></span></p>
-   				</div>
-   				<div class="likes col-sm-2">
-   					<button type="button" class="btn btn-default"><span id="likes-count">0</span><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
-   				</div>		
-   					</div>
-   				</div>
+   	<!-- base element for each list element for cloning-->
+	   	<div class="row" id="single-entry">
+	   				<div class="col-sm-6 col-sm-offset-3">
+	   					<div class="row well">
+	   						<div class="icon col-sm-3">
+	   					<img src="">	
+	   				</div>
+	   				<div class="detail col-sm-7">
+	   					<h4 class="title"></h4>
+	   					<span class="glyphicon glyphicon-link" aria-hidden="true"></span><a href="" target="_blank"><span class="url-address"></span></a>
+	   					<p><span class="glyphicon glyphicon-tag" style="margin-top:5px" aria-hidden="true"></span><span class="tag"></span></p>
+	   				</div>
+	   				<div class="likes col-sm-2">
+	   					<button type="button" class="btn btn-default"><span id="likes-count">0</span><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></button>
+	   				</div>		
+	   					</div>
+	   				</div>
+	   	</div>
+	   <!-- container for all list elements -->
+	   	<div id="all-entries">
+	   	</div>
+	   	<!-- Button trigger modal -->
+	   	<button type="button" id="fab-button" data-toggle="modal" data-target="#myModal">
+	   	<i class="material-icons md-light">add</i>
+	   	</button>
+
+	<!-- Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">Post a profile</h4>
+			      </div>
+			      <div class="modal-body">
+			      	<div class="input-group">
+			       	 <input type="text" name="title" class="form-control" placeholder="Title" >
+			      	 </div>
+			      	 <div class="input-group">
+			       	 <input type="text" name="tag" class="form-control" placeholder="Tag">
+			      	 </div>
+			       	<div class="input-group">
+			      	 	 <input type="text" name="url" class="form-control" placeholder="URL">
+			      	 </div>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary" id="post-button"><span class="glyphicon glyphicon-circle-arrow-up"></span>Add</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>   	
    	</div>
-   	<div id="all-entries">
-  	
-   	<!-- <div class="col-xs-3 post-div">
-   	<h3>Post a website</h3>
-   	<input type="text" name="title">
-   	<input type="text" name="url">
-   	<input type="text" name="tag">
-   	<button class="btn btn-default" id="post-button"><span class="glyphicon glyphicon-circle-arrow-up"></span>Add</button>
-   	</div> -->
-   	</div>
-   	<!-- Button trigger modal -->
-   	<button type="button" id="fab-button" data-toggle="modal" data-target="#myModal">
-   	<i class="material-icons md-light">add</i>
-   	</button>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Post a profile</h4>
-      </div>
-      <div class="modal-body">
-      	<div class="input-group">
-       	 <input type="text" name="title" class="form-control" placeholder="Title" >
-      	 </div>
-      	 <div class="input-group">
-       	 <input type="text" name="tag" class="form-control" placeholder="Tag">
-      	 </div>
-       	<div class="input-group">
-      	 	 <input type="text" name="url" class="form-control" placeholder="URL">
-      	 </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="post-button"><span class="glyphicon glyphicon-circle-arrow-up"></span>Add</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!--Modal-->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel"></h4>
-      </div>
-      <div class="modal-body">
-      	<P id="message"></P>
-      	 </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-   	
-   	</div>
-
+<!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
